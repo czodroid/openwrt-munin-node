@@ -2,8 +2,8 @@
 # Author: Olivier Sirol <czo@free.fr>
 # License: GPL-2.0 (http://www.gnu.org/copyleft)
 # File Created: 03 May 2024
-# Last Modified: Thursday 30 April 2026, 13:35
-# Edit Time: 3:35:55
+# Last Modified: Saturday 03 October 2026, 16:54
+# Edit Time: 3:38:54
 # Description:
 #
 #        OpenWRT Makefile for muninwrt
@@ -13,7 +13,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=muninwrt
-PKG_VERSION:=1.1.3
+PKG_VERSION:=1.2.4
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=Olivier Sirol <czo@free.fr>
@@ -23,11 +23,14 @@ include $(INCLUDE_DIR)/package.mk
 
 Build/Compile=
 
+# too big depends for my Archer C7 v2:
+#  DEPENDS:=+perl +perlbase-getopt +perlbase-file
+
 define Package/muninwrt
   SECTION:=utils
   CATEGORY:=Utilities
   PKGARCH:=all
-  DEPENDS:=+perl +perlbase-getopt +perlbase-file
+  DEPENDS:=+perl +perlbase-base
   TITLE:=Munin node for OpenWRT implemented in perl like pmmn
   URL:=https://github.com/czodroid/muninwrt
 endef
