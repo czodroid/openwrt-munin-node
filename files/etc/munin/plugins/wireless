@@ -4,9 +4,9 @@
 # Author: Olivier Sirol <czo@free.fr>
 # License: GPL-2.0 (http://www.gnu.org/copyleft)
 # File Created: 03 Dec 2019
-# Last Modified: Monday 07 July 2025, 22:32
-# $Id: wireless,v 1.42 2025/07/07 22:32:36 czo Git $
-# Edit Time: 14:43:01
+# Last Modified: Saturday 03 October 2026, 16:03
+# $Id: wireless,v 1.42 2026/10/03 16:03:32 czo Git $
+# Edit Time: 14:43:59
 # Description:
 #
 #       Munin plugin for if_[wildcard]
@@ -22,7 +22,7 @@
 #   phy0-ap0
 #   phy0-ap1
 #
-# Copyright: (C) 2019-2025 Olivier Sirol <czo@free.fr>
+# Copyright: (C) 2019-2026 Olivier Sirol <czo@free.fr>
 
 # use strict;
 use warnings;
@@ -67,7 +67,7 @@ foreach (qx(iwinfo 2>/dev/null)) {
         if ( $quality =~ /unknown/ ) {
             $quality = 'U';
         } else {
-            $quality = eval($2) * 100;
+            $quality = sprintf( "%.1f", eval($2) * 100 );
         }
 
         $iw{$name}{power}   = $power;
@@ -142,7 +142,7 @@ foreach $i ( sort keys %iw ) {
 foreach $i ( sort keys %iw ) {
     print <<EOT;
 multigraph wireless_$i
-signal.label $iw{$i}{signal}
+signal.value $iw{$i}{signal}
 noise.value $iw{$i}{noise}
 
 multigraph wireless_associations_$i
