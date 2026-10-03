@@ -2,18 +2,18 @@
 # Author: Olivier Sirol <czo@free.fr>
 # License: GPL-2.0 (http://www.gnu.org/copyleft)
 # File Created: 03 May 2024
-# Last Modified: Saturday 03 October 2026, 16:54
-# Edit Time: 3:38:54
+# Last Modified: Saturday 03 October 2026, 17:08
+# Edit Time: 3:40:57
 # Description:
 #
-#        OpenWRT Makefile for muninwrt
+#        OpenWRT Makefile for openwrt-munin-node
 #
 # Copyright: (C) 2024-2026 Olivier Sirol <czo@free.fr>
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=muninwrt
-PKG_VERSION:=1.2.4
+PKG_NAME:=openwrt-munin-node
+PKG_VERSION:=1.3.1
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=Olivier Sirol <czo@free.fr>
@@ -26,42 +26,42 @@ Build/Compile=
 # too big depends for my Archer C7 v2:
 #  DEPENDS:=+perl +perlbase-getopt +perlbase-file
 
-define Package/muninwrt
+define Package/openwrt-munin-node
   SECTION:=utils
   CATEGORY:=Utilities
   PKGARCH:=all
   DEPENDS:=+perl +perlbase-base
   TITLE:=Munin node for OpenWRT implemented in perl like pmmn
-  URL:=https://github.com/czodroid/muninwrt
+  URL:=https://github.com/czodroid/openwrt-munin-node
 endef
 
-define Package/muninwrt/Default/description
+define Package/openwrt-munin-node/Default/description
   Munin is a monitoring system for Unix networks.
   Munin node for OpenWRT implemented in perl like pmmn, with all plugins in /etc/munin/plugins.
 endef
 
-define Package/muninwrt/install
+define Package/openwrt-munin-node/install
     $(INSTALL_DIR)  $(1)/etc/munin
 	$(CP) ./files/etc/munin/* $(1)/etc/munin/
 endef
 
-define Package/muninwrt/preinst
+define Package/openwrt-munin-node/preinst
 #!/bin/sh
 echo "-> rm -fr ${IPKG_INSTROOT}/etc/munin"
 rm -fr ${IPKG_INSTROOT}/etc/munin
 endef
 
-define Package/muninwrt/postinst
+define Package/openwrt-munin-node/postinst
 #!/bin/sh
 echo "-> running ${IPKG_INSTROOT}/etc/munin/share/munin-node-configure"
 ${IPKG_INSTROOT}/etc/munin/share/munin-node-configure
 endef
 
-define Package/muninwrt/postrm
+define Package/openwrt-munin-node/postrm
 #!/bin/sh
 echo "-> rm -fr ${IPKG_INSTROOT}/etc/munin"
 rm -fr ${IPKG_INSTROOT}/etc/munin
 endef
 
-$(eval $(call BuildPackage,muninwrt))
+$(eval $(call BuildPackage,openwrt-munin-node))
 

@@ -1,16 +1,16 @@
-# Muninwrt - a Munin node for small Linux systems
+# openwrt-munin-node - a Munin node for small Linux systems
 
-### Last Modified: Thursday 30 April 2026, 13:32
+### Last Modified: Saturday 03 October 2026, 17:09
 
 Munin is a networked resource monitoring tool that helps analyze resource trends.
 
 Although Munin is an older tool, it can outperform Prometheus/AlertManager/Grafana on small systems, thanks to its lightweight design and use of an RRD-based fixed-size database.
 
-Muninwrt is a Munin node implemented in perl, similar to `pmmn`, with all plugins located in `/etc/munin/plugins`.
+openwrt-munin-node is a Munin node implemented in perl, similar to `pmmn`, with all plugins located in `/etc/munin/plugins`.
 
 It works on small Linux systems: OpenWRT, RUTX, Tiny Core Linux, piCore and so on, and even Debian 🥳.
 
-As of version 1.0.0, Muninwrt no longer depends on `xinetd`.
+As of version 1.0.0, openwrt-munin-node no longer depends on `xinetd`.
 
 Just add this to your `munin.conf`:
 
@@ -31,26 +31,26 @@ get the sdk, untar it, then cd to it
     make toolchain/install
 
     cd feeds/packages/utils
-    git clone https://github.com/czodroid/muninwrt
+    git clone https://github.com/czodroid/openwrt-munin-node
     cd ../../..
     ./scripts/feeds update -a
-    ./scripts/feeds install muninwrt
+    ./scripts/feeds install openwrt-munin-node
     make menuconfig
 
-Then in `Utilities  --->` select muninwrt `<*> muninwrt`
+Then in `Utilities  --->` select openwrt-munin-node `<*> openwrt-munin-node`
 
-    make package/muninwrt/compile
+    make package/openwrt-munin-node/compile
     make package/index
 
-opkg .ipk is a file like `bin/packages/arm_cortex-a7_neon-vfpv4/packages/muninwrt_1.0.1-1_all.ipk`
+opkg .ipk is a file like `bin/packages/arm_cortex-a7_neon-vfpv4/packages/openwrt-munin-node_1.0.1-1_all.ipk`
 
 ## Install by Releases
 
-You can get the release here: https://github.com/czodroid/muninwrt/releases
+You can get the release here: https://github.com/czodroid/openwrt-munin-node/releases
 
 Then copy this file to your router and install it:
 
-    opkg install /tmp/muninwrt_1.0.1-1_all.ipk
+    opkg install /tmp/openwrt-munin-node_1.0.1-1_all.ipk
 
 ## Install by hand
 
@@ -60,7 +60,7 @@ You must also run /etc/munin/share/munin-node-configure to configure all interfa
 
 
 ## Source code
-https://github.com/czodroid/muninwrt
+https://github.com/czodroid/openwrt-munin-node
 
 
 ## License
