@@ -3,7 +3,7 @@
 # Filename: munin-pmmn
 # Author: Olivier Sirol <czo@free.fr>
 # File Created: 20 April 2014
-# Last Modified: Sunday 15 February 2026, 18:33
+# Last Modified: Monday 12 October 2026, 17:31
 # Description:
 #
 #  A Poor Man's Munin Node that only uses warnings and strict as modules.
@@ -47,9 +47,10 @@ $| = 1;
     # PERL INIT
 
     # plugins/plugin.sh and Munin/Plugin.pm for plugins
-    # export MUNIN_LIBDIR=/etc/munin ; export PERL5LIB=/etc/munin
-    $ENV{'MUNIN_LIBDIR'} = $pmmn_dir;
-    $ENV{'PERL5LIB'}     = $pmmn_dir;
+    # export PERL5LIB=/etc/munin ; export MUNIN_LIBDIR=/etc/munin ; export MUNIN_PLUGSTATE=/var/lib/munin-node/plugin-state
+    $ENV{'PERL5LIB'}        = $pmmn_dir;
+    $ENV{'MUNIN_LIBDIR'}    = $pmmn_dir;
+    $ENV{'MUNIN_PLUGSTATE'} = '/var/lib/munin-node/plugin-state';
 }
 
 print "# munin node at $host\n";

@@ -2,8 +2,8 @@
 # Author: Olivier Sirol <czo@free.fr>
 # License: GPL-2.0 (http://www.gnu.org/copyleft)
 # File Created: 03 May 2024
-# Last Modified: Monday 12 October 2026, 15:07
-# Edit Time: 3:43:56
+# Last Modified: Monday 12 October 2026, 17:32
+# Edit Time: 3:44:02
 # Description:
 #
 #        OpenWRT Makefile for openwrt-munin-node
@@ -13,7 +13,7 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openwrt-munin-node
-PKG_VERSION:=1.3.3
+PKG_VERSION:=1.3.4
 PKG_RELEASE:=1
 
 PKG_MAINTAINER:=Olivier Sirol <czo@free.fr>
