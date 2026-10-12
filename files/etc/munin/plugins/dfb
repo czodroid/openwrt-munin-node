@@ -4,9 +4,9 @@
 # Author: Olivier Sirol <czo@free.fr>
 # License: GPL-2.0 (http://www.gnu.org/copyleft)
 # File Created: 03 Dec 2019
-# Last Modified: Saturday 10 January 2026, 16:52
-# $Id: dfb,v 1.42 2026/01/10 16:52:24 czo Git $
-# Edit Time: 3:49:47
+# Last Modified: Monday 12 October 2026, 15:09
+# $Id: dfb,v 1.42 2026/10/12 15:09:53 czo Git $
+# Edit Time: 3:50:14
 # Description:
 #
 #       Munin plugin
@@ -30,7 +30,7 @@ my $critical;
 ## Exclude name or mountpoint or type
 # debian: my $exclude = 'none|unknown|rootfs|iso9660|squashfs|udf|romfs|ramfs|debugfs|cgroup_root|devtmpfs|nfs';
 # openwrt: overlayfs:, rutx: mtdblock15, ubuntu: snap, tinyCore: tcloop, pcp; tcploop
-my $exclude = 'overlayfs:|mtdblock15|tmpfs|nfs|\/tcloop\/|\/tcploop\/|\/snap\/';
+my $exclude = 'overlayfs:|efivarfs|mtdblock15|tmpfs|nfs|\/tcloop\/|\/tcploop\/|\/snap\/';
 ## For these devices use the mount point, the device is useless
 my %usemntpt = ( tmpfs => 1, none => 1, udev => 1, simfs => 1 );
 my %dfh;
@@ -91,7 +91,8 @@ foreach (qx(df -P -T -k)) {
     chomp;
     if ($headerline) { $headerline = 0; next; }
     my ( $name, $type, $size, $used, $avail, $cap, $mountpt ) = split( /\s+/, $_, 7 );
-    ## print "$name, $type, $size, $used, $avail, $cap, $mountpt\n";
+
+    # print "$name, $type, $size, $used, $avail, $cap, $mountpt\n";
     next if ( $name =~ $exclude or $mountpt =~ $exclude or $type =~ $exclude );
 
     $name = $mountpt if defined( $usemntpt{$name} ) && $usemntpt{$name};
